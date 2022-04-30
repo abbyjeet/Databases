@@ -1,11 +1,28 @@
+# https://www.mongodb.com/developer/quickstart/python-quickstart-crud/
+'''
+# Note:
+# On Debian & Ubuntu systems you'll first need to install virtualenv with:
+# sudo apt install python3-venv
+python3 -m venv venv
+
+# Run the following on OSX & Linux:
+source venv/bin/activate
+
+
+'''
 import datetime
 import os
 from random import randint
 
+from dotenv import load_dotenv
 from pymongo import MongoClient
 
+# Load config from .env file
+load_dotenv()
+MONGODB_URI = os.environ["MONGODB_URI"]
+
 # Connect to DB
-client = MongoClient("mongodb://sa:password@localhost:27017/")
+client = MongoClient(MONGODB_URI)
 
 # clear db, if already exists
 client.drop_database("mydb")
